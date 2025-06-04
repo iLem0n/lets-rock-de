@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { TileIndex } from "../types/types";
 import { useTilesGallery } from "@/app/features/tiles-gallery/TilesGalleryContext";
-import { MouseEventHandler, useEffect, useMemo, useState } from "react";
+import { MouseEventHandler, useEffect, useMemo, useRef, useState } from "react";
 import '../styles.css';
 import { clsx } from "clsx";
 
@@ -16,11 +16,30 @@ export default function Tile({ imageSrc, tileIndex }: TileProps) {
 
     const { hoverIndex, setHoverIndex } = useTilesGallery();
     const [animationPlayState, setAnimationPlayState] = useState<'paused' | 'running'>('paused');
+    const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Run the animation only once on initial render
     useEffect(() => {
         setAnimationPlayState('running');
     }, []);
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (resetTimeoutRef.current) {
+                clearTimeout(resetTimeoutRef.current);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!!hoverIndex) {
+            if (resetTimeoutRef.current) {
+                clearTimeout(resetTimeoutRef.current);
+                resetTimeoutRef.current = null;
+            }
+        }
+    }, [hoverIndex]);
 
     const highlightType: 'highlight' | 'background' | null = useMemo(() => {
         if (hoverIndex === null) return null;
@@ -64,7 +83,11 @@ export default function Tile({ imageSrc, tileIndex }: TileProps) {
     }
 
     const resetHovering: MouseEventHandler<HTMLDivElement> = () => {
-        setHoverIndex(null);
+        // Add a slight delay before resetting the hover state
+        resetTimeoutRef.current = setTimeout(() => {
+            setHoverIndex(null);
+            resetTimeoutRef.current = null;
+        }, 150); // 1500ms delay, adjust as needed
     }
 
     return (
