@@ -14,7 +14,13 @@ interface TileProps {
 
 export default function Tile({ imageSrc, tileIndex }: TileProps) {
 
-    const { hoverIndex, setHoverIndex, centerpieceReady } = useTilesGallery();
+    const {
+        hoverIndex,
+        setHoverIndex,
+        centerpieceReady,
+        openGallery
+    } = useTilesGallery();
+
     const [animationPlayState, setAnimationPlayState] = useState<'paused' | 'running'>('paused');
     const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -99,6 +105,7 @@ export default function Tile({ imageSrc, tileIndex }: TileProps) {
                 animationDelay, 
                 animationPlayState 
             }}
+            onClick={openGallery}
         >
             <Image
                 src={imageSrc}
