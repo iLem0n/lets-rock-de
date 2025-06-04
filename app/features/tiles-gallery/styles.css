@@ -103,10 +103,9 @@
     justify-content: center;
     height: 100%;
     min-width: 0;
-    width: stretch;                /* Modern browsers */
     width: -moz-available;          /* Firefox */
     width: -webkit-fill-available;  /* Chrome, Safari */
-    width: stretch;                 /* Modern browsers */
+    width: stretch;                /* Modern browsers */
 }
 
 .centerpiece-image-wrapper {
