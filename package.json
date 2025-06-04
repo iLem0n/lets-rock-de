@@ -12,9 +12,11 @@
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.1.1",
     "@mui/material": "^7.1.1",
     "@mui/material-nextjs": "^7.1.1",
     "clsx": "^2.1.1",
+    "lodash": "^4.17.21",
     "next": "15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

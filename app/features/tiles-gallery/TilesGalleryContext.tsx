@@ -1,12 +1,13 @@
 'use client';
 
 import { createContext, ReactNode, useContext, useState } from "react";
-import { TileIndex } from "@/app/features/tiles-gallery/types/types";
+import { ImageRef, LayoutIndex } from "@/app/features/tiles-gallery/types/types";
 import FullscreenGalleryModal from "@/app/features/fullscreen-gallery-modal/FullscreenGalleryModal";
 
 interface TilesGalleryContextType {
-    hoverIndex: TileIndex | null;
-    setHoverIndex: (hoverIndex: TileIndex | null) => void;
+    images: ImageRef[];
+    hoverIndex: LayoutIndex | null;
+    setHoverIndex: (hoverIndex: LayoutIndex | null) => void;
     centerpieceReady: boolean;
     setCenterpieceReady: (ready: boolean) => void;
     openGallery?: () => void;
@@ -25,7 +26,28 @@ export function useTilesGallery() {
 export function TilesGalleryProvider({
     children,
 }: Readonly<{ children: ReactNode }>) {
-    const [hoverIndex, setHoverIndex] = useState<TileIndex | null>(null);
+
+    const leftImageSources: Omit<ImageRef, 'id'>[] = Array.from({ length: 8 }).map((_, index) => ({
+        src: `/assets/images/left/${index + 1}.png`,
+        layoutIndex: { index, side: 'left' },
+    }));
+
+    const rightImageSources: Omit<ImageRef, 'id'>[] = Array.from({ length: 8 }).map((_, index) => ({
+        src: `/assets/images/right/${index + 1}.png`,
+        layoutIndex: { index, side: 'right' },
+    }));
+
+
+    const images: ImageRef[] = [
+        ...leftImageSources,
+        ...rightImageSources,
+    ].map((ref, index) => ({
+        id: index,
+        src: ref.src,
+        layoutIndex: ref.layoutIndex,
+    }));
+
+    const [hoverIndex, setHoverIndex] = useState<LayoutIndex | null>(null);
     const [centerpieceReady, setCenterpieceReady] = useState<boolean>(false);
 
     const [isGalleryOpen, setIsGalleryOpen] = useState<boolean>(false);
@@ -41,6 +63,7 @@ export function TilesGalleryProvider({
             centerpieceReady, 
             setCenterpieceReady,
             openGallery,
+            images
         }}>
             {children}
             <FullscreenGalleryModal

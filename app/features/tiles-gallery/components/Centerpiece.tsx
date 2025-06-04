@@ -19,7 +19,7 @@ export default function Centerpiece() {
             setTimeout(() => {
                 setCenterpieceReady(true);
             }, animationDuration);
-        }, 500); // 500ms delay before starting the animation
+        }, 200); // 500ms delay before starting the animation
 
         return () => clearTimeout(timer);
     }, [setCenterpieceReady]);

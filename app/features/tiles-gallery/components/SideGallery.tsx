@@ -1,6 +1,7 @@
 'use client';
 
 import Tile from "@/app/features/tiles-gallery/components/Tile";
+import { useTilesGallery } from "@/app/features/tiles-gallery/TilesGalleryContext";
 
 interface SideGalleryProps {
     side: 'left' | 'right';
@@ -8,14 +9,19 @@ interface SideGalleryProps {
 
 export default function SideGallery({ side }: SideGalleryProps) {
 
+    const { images } = useTilesGallery();
+
+    const sortedSideImages = images
+        .filter(image => image.layoutIndex.side === side)
+        .sort((a, b) => a.layoutIndex.index - b.layoutIndex.index);
+
     return (
         // <div className="grid grid-cols-2 grid-rows-4 gap-4 /*h-fit*/ flex-grow">
         <div className="site-gallery-container">
-            {Array.from({ length: 8 }).map((_, index) => (
+            {sortedSideImages.map((image, index) => (
                 <Tile
                     key={index}
-                    tileIndex={{ side, index }}
-                    imageSrc={`/assets/images/${side}/${index + 1}.png`}
+                    imageRef={image}
                 />
             ))}
         </div>
