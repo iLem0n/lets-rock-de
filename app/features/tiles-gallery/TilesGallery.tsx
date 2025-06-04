@@ -1,21 +1,15 @@
-'use client';
-
-import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material";
 import SideGallery from "@/app/features/tiles-gallery/components/SideGallery";
 import { TilesGalleryProvider } from "@/app/features/tiles-gallery/TilesGalleryContext";
 import Centerpiece from "@/app/features/tiles-gallery/components/Centerpiece";
 
-export default function TilesGallery() {
+export default async function TilesGallery() {
 
     return (
         <TilesGalleryProvider>
             <div className="flex w-screen h-screen p-4">
                 <div className="gap-filler"></div>
                 <SideGallery side="left" />
-
                 <Centerpiece />
-
                 <SideGallery side="right" />
                 <div className="gap-filler"></div>
             </div>
@@ -61,31 +55,3 @@ export default function TilesGallery() {
     //         // </Grid>
     // )
 }
-
-
-const MainGrid = styled(Grid) (({ theme }) => ({
-    backgroundColor: '#2292dc',
-    height: '100%',
-    width: '100%',
-}));
-
-const SideGallerGrid = styled(Grid) (({ theme }) => ({
-    backgroundColor: '#70efe9',
-    minWidth: 0,
-    minHeight: 0,
-}));
-
-const MainImageGrid = styled(Grid) (({ theme }) => ({
-    backgroundColor: '#3b36c0',
-    minWidth: 0,
-    minHeight: 0,
-}));
-
-const FillerGrid = styled(Grid) (({ theme }) => ({
-    backgroundColor: '#1da6a1',
-}));
-
-const Tile = styled(Grid) (({ theme }) => ({
-    aspectRatio: '1 / 1',
-    backgroundColor: '#9a00d2',
-}));

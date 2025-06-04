@@ -9,6 +9,17 @@
     }
 }
 
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+        -webkit-transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
+}
+
 .gap-filler {
     flex-grow: 1;
     flex-shrink: 0;
@@ -24,6 +35,8 @@
     grid-template-rows: repeat(4, minmax(0, 1fr));
     gap: calc(var(--spacing) * 4);
     aspect-ratio: 1 / 2;
+    /* Fallback for browsers that don't support aspect-ratio */
+    position: relative;
 }
 
 .centerpiece-container {
@@ -34,16 +47,10 @@
     justify-content: center;
     height: 100%;
     min-width: 0;
-    width: auto;
-    /* @ts-expect-error - that's fine */
-    /*width: -webkit-fill-available; !* Safari *!*/
-}
-
-/* Safari-specific media query */
-@media screen and (-webkit-min-device-pixel-ratio: 0) and (update-frequency: high) {
-    .centerpiece-container {
-        width: -webkit-fill-available; /* Safari-specific */
-    }
+    width: stretch;                /* Modern browsers */
+    width: -moz-available;          /* Firefox */
+    width: -webkit-fill-available;  /* Chrome, Safari */
+    width: stretch;                 /* Modern browsers */
 }
 
 .centerpiece-image-wrapper {
@@ -58,20 +65,51 @@
     align-items: center;
     justify-content: center;
     aspect-ratio: 2 / 3;
+
+    /* Fallback for browsers that don't support aspect-ratio */
+    &::before {
+        content: "";
+        float: left;
+        padding-top: 150%; /* 3/2 * 100% */
+    }
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 }
 
 .tile-container {
     aspect-ratio: 1 / 1;
-    width: 100%; ;
+    width: 100%;
     overflow: hidden;
     opacity: 0;
     position: relative;
     border: 4px solid gray;
+    -webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    -ms-transform-origin: center;
     transform-origin: center;
+    -webkit-animation: fadeIn .75s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
     animation: fadeIn .75s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    -webkit-animation-play-state: paused;
     animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
+    -webkit-transition: opacity 0.6s ease-out 0.15s, border 0.6s ease-out 0.25s, -webkit-transform 0.4s ease-out 0.15s;
     transition: opacity 0.6s ease-out 0.15s, border 0.6s ease-out 0.25s, transform 0.4s ease-out 0.15s;
+
+    /* Fallback for browsers that don't support aspect-ratio */
+    &::before {
+        content: "";
+        float: left;
+        padding-top: 100%; /* 1/1 * 100% */
+    }
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 }
 
 .tile-container.background {
@@ -82,7 +120,11 @@
 .tile-container.highlight {
     opacity: 1;
     border: 4px solid #ffffff;
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
     transform: scale(1.05);
     z-index: 10;
+    -webkit-transition: opacity 0.6s ease 0s, border 0.6s ease 0s, -webkit-transform 0.6s ease 0s;
     transition: opacity 0.6s ease 0s, border 0.6s ease 0s, transform 0.6s ease 0s;
 }
