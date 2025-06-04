@@ -34,6 +34,16 @@
     justify-content: center;
     height: 100%;
     min-width: 0;
+    width: auto;
+    /* @ts-expect-error - that's fine */
+    /*width: -webkit-fill-available; !* Safari *!*/
+}
+
+/* Safari-specific media query */
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (update-frequency: high) {
+    .centerpiece-container {
+        width: -webkit-fill-available; /* Safari-specific */
+    }
 }
 
 .centerpiece-image-wrapper {
@@ -61,7 +71,7 @@
     animation: fadeIn .75s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
     animation-play-state: paused;
     animation-fill-mode: forwards;
-    transition: opacity 0.6s ease-out 0.15s, border 0.6s ease-out 0.25s, transform 0.6s ease-out 0.15s;
+    transition: opacity 0.6s ease-out 0.15s, border 0.6s ease-out 0.25s, transform 0.4s ease-out 0.15s;
 }
 
 .tile-container.background {

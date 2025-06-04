@@ -76,7 +76,7 @@ export default function Tile({ imageSrc, tileIndex }: TileProps) {
 
     // Calculate animation delay based on tile index and side
     // Use a smaller delay for smoother sequential animation
-    const animationDelay = `${animationWave * .5}s`;
+    const animationDelay = `${animationWave * .25}s`;
 
     const setHovering: MouseEventHandler<HTMLDivElement> = () => {
         setHoverIndex(tileIndex);
