@@ -14,14 +14,16 @@ interface TileProps {
 
 export default function Tile({ imageSrc, tileIndex }: TileProps) {
 
-    const { hoverIndex, setHoverIndex } = useTilesGallery();
+    const { hoverIndex, setHoverIndex, centerpieceReady } = useTilesGallery();
     const [animationPlayState, setAnimationPlayState] = useState<'paused' | 'running'>('paused');
     const resetTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Run the animation only once on initial render
+    // Run the animation only when centerpiece is ready
     useEffect(() => {
-        setAnimationPlayState('running');
-    }, []);
+        if (centerpieceReady) {
+            setAnimationPlayState('running');
+        }
+    }, [centerpieceReady]);
 
     // Cleanup timeout on unmount
     useEffect(() => {
@@ -48,35 +50,30 @@ export default function Tile({ imageSrc, tileIndex }: TileProps) {
     }, [hoverIndex]);
 
     const animationWave = useMemo((): number => {
-        const waveMap = {
-            left: [
-                4,  // top-left
-                1,  // top-right
-                3,  // second row, left
-                2,  // second row, right
-                3,  // third row, left
-                2,  // third row, right
-                4,  // bottom-left
-                1   // bottom-right
-            ],
-            right: [
-                1,   // top-left of right side
-                4,  // top-right
-                2,  // second row, left
-                3,  // second row, right
-                2,  // third row, left
-                3,  // third row, right
-                1,  // bottom-left
-                4   // bottom-right
-            ]
-        };
+        // Determine if the tile is in the left or right column
+        const isRightColumn = tileIndex.index % 2 === 1; // Right column tiles have odd indices (1, 3, 5, 7)
+        const isLeftSide = tileIndex.side === 'left';
 
-        return waveMap[tileIndex.side]?.[tileIndex.index] || 0;
+        // Base delay value - no row-based delay
+        let waveValue;
+
+        // Animate columns simultaneously:
+        // 1. Right column of left gallery and left column of right gallery animate together
+        // 2. Left column of left gallery and right column of right gallery animate together
+        if ((isLeftSide && isRightColumn) || (!isLeftSide && !isRightColumn)) {
+            // 2nd tile on left (right column) and 1st tile on right (left column) - animate first
+            waveValue = 1; // All tiles in this group start at the same time
+        } else {
+            // 1st tile on left (left column) and 2nd tile on right (right column) - animate second
+            waveValue = 2; // All tiles in this group start at the same time
+        }
+
+        return waveValue;
     }, [tileIndex]);
 
     // Calculate animation delay based on tile index and side
     // Use a smaller delay for smoother sequential animation
-    const animationDelay = `${animationWave * .25}s`;
+    const animationDelay = `${animationWave * 0.2}s`;
 
     const setHovering: MouseEventHandler<HTMLDivElement> = () => {
         setHoverIndex(tileIndex);
