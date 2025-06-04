@@ -15,7 +15,7 @@ export default function FullscreenGalleryModal({ isOpen, onClose }: FullscreenGa
     return (
         <Modal open={isOpen} onClose={onClose} className="fullscreen-modal">
             <GalleryProvider images={images}>
-                <ImageGallery images={images} onClose={onClose}/>
+                <ImageGallery onClose={onClose}/>
             </GalleryProvider>
         </Modal>
     );
