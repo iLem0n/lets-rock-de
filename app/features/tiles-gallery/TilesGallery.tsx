@@ -11,11 +11,13 @@ export default function TilesGallery() {
     return (
         <TilesGalleryProvider>
             <div className="flex w-screen h-screen p-4">
+                <div className="gap-filler"></div>
                 <SideGallery side="left" />
 
                 <Centerpiece />
 
                 <SideGallery side="right" />
+                <div className="gap-filler"></div>
             </div>
         </TilesGalleryProvider>
     );

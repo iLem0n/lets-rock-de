@@ -9,7 +9,8 @@ interface SideGalleryProps {
 export default function SideGallery({ side }: SideGalleryProps) {
 
     return (
-        <div className="grid grid-cols-2 grid-rows-4 gap-4 h-fit">
+        // <div className="grid grid-cols-2 grid-rows-4 gap-4 /*h-fit*/ flex-grow">
+        <div className="site-gallery-container">
             {Array.from({ length: 8 }).map((_, index) => (
                 <Tile
                     key={index}
