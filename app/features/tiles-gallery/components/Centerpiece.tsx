@@ -4,14 +4,15 @@ import '../styles.css';
 export default function Centerpiece() {
     return (
         <div className="centerpiece-container">
-            <Image
-                src="/assets/images/centerpiece.png"
-                alt=""
-                width={800}
-                height={1200}
-                className="centerpiece-image-wrapper"
-                priority
-            />
+            <div className="centerpiece-image-wrapper">
+                <Image
+                    src="/assets/images/centerpiece.png"
+                    alt=""
+                    fill
+                    style={{ objectFit: 'contain' }}
+                    priority
+                />
+            </div>
         </div>
     );
 }
