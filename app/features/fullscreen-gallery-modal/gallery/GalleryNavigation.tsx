@@ -13,14 +13,14 @@ export default function GalleryNavigation() {
     return (
         <RootBox>
             <Stack spacing={1}>
-                <IconButton><HomeTwoTone sx={{ color: "white", fontSize: 54 }} /></IconButton>
-                <IconButton><FullscreenTwoTone sx={{ color: "white", fontSize: 54 }}/></IconButton>
+                <IconButton><HomeTwoTone sx={{ color: "white", fontSize: 54, opacity: .5 }} /></IconButton>
+                <IconButton><FullscreenTwoTone sx={{ color: "white", fontSize: 54, opacity: .5 }}/></IconButton>
                 <Stack direction="row" spacing={1}>
                     <IconButton onClick={() => setActiveIndex(activeIndex === 0 ? images.length - 1 : activeIndex - 1)}>
-                        <ArrowCircleLeftTwoTone sx={{ color: "white", fontSize: 54 }} />
+                        <ArrowCircleLeftTwoTone sx={{ color: "white", fontSize: 54, opacity: .5 }} />
                     </IconButton>
                     <IconButton onClick={() => setActiveIndex(activeIndex === images.length - 1 ? 0 : activeIndex + 1)}>
-                        <ArrowCircleRightTwoTone sx={{ color: "white", fontSize: 54 }} />
+                        <ArrowCircleRightTwoTone sx={{ color: "white", fontSize: 54, opacity: .5 }} />
                     </IconButton>
                 </Stack>
             </Stack>

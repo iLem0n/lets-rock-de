@@ -11,7 +11,6 @@ interface FullscreenGalleryModalProps {
 export default function FullscreenGalleryModal({ isOpen, onClose }: FullscreenGalleryModalProps) {
     const { images,  } = useTilesGallery();
 
-    console.log("FullscreenGalleryModal images:", images);
     return (
         <Modal open={isOpen} onClose={onClose} className="fullscreen-modal">
             <GalleryProvider images={images}>

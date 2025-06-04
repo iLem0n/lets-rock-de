@@ -6,7 +6,7 @@ export default async function TilesGallery() {
 
     return (
         <TilesGalleryProvider>
-            <div className="flex w-screen h-screen p-4">
+            <div className="flex w-screen h-screen p-4" style={{display: '-webkit-flex'}}>
                 <div className="gap-filler"></div>
                 <SideGallery side="left" />
                 <Centerpiece />

@@ -77,8 +77,7 @@
 }
 
 .gap-filler {
-    flex-grow: 1;
-    flex-shrink: 0;
+    flex: 0.5 1 auto;
     width: auto;
 }
 
@@ -91,21 +90,22 @@
     grid-template-rows: repeat(4, minmax(0, 1fr));
     gap: calc(var(--spacing) * 4);
     aspect-ratio: 1 / 2;
-    /* Fallback for browsers that don't support aspect-ratio */
     position: relative;
 }
 
 .centerpiece-container {
+    flex: 0 1 auto;
     padding-left: 16px;
     padding-right: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-    min-width: 0;
-    width: -moz-available;          /* Firefox */
-    width: -webkit-fill-available;  /* Chrome, Safari */
-    width: stretch;                /* Modern browsers */
+    min-width: 33vw;
+    /*width: 100%;*/
+    /*width: -moz-available;          !* Firefox *!*/
+    /*width: -webkit-fill-available;  !* Chrome, Safari *!*/
+    /*width: stretch;                !* Modern browsers *!*/
 }
 
 .centerpiece-image-wrapper {
@@ -187,7 +187,7 @@
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);
     -ms-transform: scale(1.05);
-    transform: scale(1.05);
+    transform: scale(1.1) !important;
     z-index: 10;
     -webkit-transition: opacity 0.6s ease 0s, border 0.6s ease 0s, -webkit-transform 0.6s ease 0s;
     transition: opacity 0.6s ease 0s, border 0.6s ease 0s, transform 0.6s ease 0s;
