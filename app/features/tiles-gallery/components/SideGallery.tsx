@@ -2,6 +2,8 @@
 
 import Tile from "@/app/features/tiles-gallery/components/Tile";
 import { useTilesGallery } from "@/app/features/tiles-gallery/TilesGalleryContext";
+import { clsx } from "clsx";
+import { useSafariDetection } from "@/app/helper/isSafari";
 
 interface SideGalleryProps {
     side: 'left' | 'right';
@@ -10,6 +12,7 @@ interface SideGalleryProps {
 export default function SideGallery({ side }: SideGalleryProps) {
 
     const { images } = useTilesGallery();
+    const isSafari = useSafariDetection();
 
     const sortedSideImages = images
         .filter(image => image.layoutIndex.side === side)
@@ -17,7 +20,13 @@ export default function SideGallery({ side }: SideGalleryProps) {
 
     return (
         // <div className="grid grid-cols-2 grid-rows-4 gap-4 /*h-fit*/ flex-grow">
-        <div className="site-gallery-container">
+        <div
+            className={clsx(
+                'site-gallery-container-base', {
+                    'site-gallery-container-safari': isSafari,
+                }
+            )}
+        >
             {sortedSideImages.map((image, index) => (
                 <Tile
                     key={index}

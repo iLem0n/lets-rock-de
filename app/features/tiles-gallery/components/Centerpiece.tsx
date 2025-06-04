@@ -4,10 +4,13 @@ import Image from "next/image";
 import '../styles.css';
 import { useEffect, useState } from "react";
 import { useTilesGallery } from "../TilesGalleryContext";
+import { useSafariDetection } from "@/app/helper/isSafari";
+import { clsx } from "clsx";
 
 export default function Centerpiece() {
     const [animationPlayState, setAnimationPlayState] = useState<'paused' | 'running'>('paused');
     const { setCenterpieceReady } = useTilesGallery();
+    const isSafari = useSafariDetection();
 
     // Start the animation after a slight delay
     useEffect(() => {
@@ -25,7 +28,13 @@ export default function Centerpiece() {
     }, [setCenterpieceReady]);
 
     return (
-        <div className="centerpiece-container">
+        <div
+            className={clsx(
+                'centerpiece-container-base', {
+                    'centerpiece-container-safari': isSafari,
+                }
+            )}
+        >
             <div 
                 className="centerpiece-image-wrapper"
                 style={{ animationPlayState }}
