@@ -1,18 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "./features/tiles-gallery/styles.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import GlobalProviders from "@/app/GlobalProviders";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { futura } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${futura.variable} antialiased`}
       >
         <GlobalProviders>
             {children}

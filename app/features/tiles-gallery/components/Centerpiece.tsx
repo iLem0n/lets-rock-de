@@ -1,7 +1,6 @@
 'use client';
 
 import Image from "next/image";
-import '../styles.css';
 import { useEffect, useState } from "react";
 import { useTilesGallery } from "../TilesGalleryContext";
 import { useSafariDetection } from "@/app/helper/isSafari";
