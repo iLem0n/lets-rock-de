@@ -60,7 +60,7 @@ export default function Centerpiece() {
                         </Typography>
                         <Image src="/assets/images/logo.png" alt="" width={100} height={100} />
                         <Typography variant="body2">
-                            <Link href="/privacy">Rechtliches</Link>
+                            <Link href="/agb">Rechtliches</Link>
                         </Typography>
                     </Stack>
                 </Stack>

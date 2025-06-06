@@ -1,0 +1,56 @@
+/* Styles for legal content (AGB, Impressum, etc.) */
+.agb-section h1, .agb-section h2, .agb-section h3,
+.agb-content h1, .agb-content h2, .agb-content h3,
+.legal-content h1, .legal-content h2, .legal-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.agb-section p,
+.agb-content p,
+.legal-content p {
+    margin-bottom: 0.75rem;
+    text-align: justify;
+}
+
+.agb-section ul, .agb-section ol,
+.agb-content ul, .agb-content ol,
+.legal-content ul, .legal-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.agb-section table,
+.agb-content table,
+.legal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.agb-section th, .agb-section td,
+.agb-content th, .agb-content td,
+.legal-content th, .legal-content td {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+}
+
+/* Additional styles for better readability */
+.agb-content,
+.legal-content {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.agb-content a,
+.legal-content a {
+    color: #90caf9;
+    text-decoration: none;
+}
+
+.agb-content a:hover,
+.legal-content a:hover {
+    text-decoration: underline;
+}

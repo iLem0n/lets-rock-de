@@ -133,7 +133,7 @@ export default async function HomeContent() {
             ))}
             <Container maxWidth="xl" className="mb-32">
                 <div className="two-column-container">
-                    <Typography variant="body1" className="text-left pb-8">
+                    <Typography variant="body1" className="text-left pb-8" color="red">
                         L e t s  R o c k - immer voller Einsatz für das beste Bild - und Freude auf kreative Zusammenarbeit.
                     </Typography>
                     <Grid container spacing={2} rowSpacing={0} columns={2}>
