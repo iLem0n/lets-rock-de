@@ -29,14 +29,30 @@ const darkTheme = createTheme({
       fontSize: '2.2rem',
       fontWeight: 'bold'
     },
+    h3: {
+      fontSize: '2rem',
+      fontWeight: 'bold'
+    },
+    h4: {
+      fontSize: '1.8rem',
+      fontWeight: 'bold'
+    },
+    h5: {
+      fontSize: '1.6rem',
+      fontWeight: 'bold'
+    },
+    h6: {
+      fontSize: '1.4rem',
+      fontWeight: 'bold'
+    },
     body1: {
-        fontSize: '1.5rem', // Default body font size
+        fontSize: '1.5rem',
         fontWeight: 600,
         textAlign: 'justify'
     },
     body2: {
       fontSize: '1.75rem',
-      fontWeight: 600,
+      fontWeight: 400,
       textAlign: 'justify'
     }
   },
