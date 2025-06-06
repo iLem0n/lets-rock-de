@@ -1,0 +1,22 @@
+.two-column-container {
+    column-count: 2;
+    column-gap: 46px;
+    column-fill: balance;
+}
+
+.column-break {
+    break-before: column;
+    -webkit-column-break-before: always;
+}
+
+.no-break {
+    break-inside: avoid;
+}
+
+.half-width {
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 2%;
+}
+

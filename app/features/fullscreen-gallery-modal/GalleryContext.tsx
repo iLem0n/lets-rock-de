@@ -6,6 +6,7 @@ interface GalleryContextType {
     images: ImageRef[];
     activeIndex: number;
     setActiveIndex: (index: number) => void;
+    onClose: () => void;
 }
 
 const GalleryContext = createContext<GalleryContextType | undefined>(undefined);
@@ -21,16 +22,24 @@ export function useGalleryContext() {
 interface GalleryProviderProps {
     children: ReactNode;
     images: ImageRef[];
+    initialImageId?: number;
+    onClose: () => void;
 }
 
 export function GalleryProvider({
     children,
     images,
+    initialImageId,
+    onClose,
 }: GalleryProviderProps) {
-    const [activeIndex, setActiveIndex] = useState(0);
+
+    const initialImage = images.find(i => i.id === initialImageId);
+    const initialImageIndex =  initialImageId && initialImage ? images.indexOf(initialImage) : 0;
+
+    const [activeIndex, setActiveIndex] = useState(initialImageIndex);
 
     return (
-        <GalleryContext.Provider value={{ images, activeIndex, setActiveIndex }}>
+        <GalleryContext.Provider value={{ images, onClose, activeIndex, setActiveIndex }}>
             {children}
             <GalleryNavigation />
         </GalleryContext.Provider>

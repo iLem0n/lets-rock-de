@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
+import { Jost} from 'next/font/google';
 import "./globals.css";
-import "./features/tiles-gallery/styles.css";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import GlobalProviders from "@/app/GlobalProviders";
-import { futura } from "./fonts";
+import { ReactNode } from "react";
+
+
+const jost = Jost({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-jost',
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,13 +19,11 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${futura.variable} antialiased`}
-      >
+    <html lang="de" className={`${jost.className} antialiased`}>
+      <body>
         <GlobalProviders>
             {children}
         </GlobalProviders>

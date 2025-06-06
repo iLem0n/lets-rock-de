@@ -51,8 +51,6 @@ export default function Tile({ imageRef }: TileProps) {
 
     const highlightType: 'highlight' | 'background' | null = useMemo(() => {
         if (hoverIndex === null) return null;
-
-        console.log('hoverIndex', hoverIndex, imageRef.layoutIndex, hoverIndex === imageRef.layoutIndex);
         if (isEqual(hoverIndex, imageRef.layoutIndex)) return 'highlight';
         return 'background';
     }, [hoverIndex]);
@@ -107,7 +105,7 @@ export default function Tile({ imageRef }: TileProps) {
                 animationDelay, 
                 animationPlayState 
             }}
-            onClick={openGallery}
+            onClick={() => openGallery(imageRef.id)}
         >
             <Image
                 src={imageRef.src}

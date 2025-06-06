@@ -8,6 +8,7 @@ export type Topic = {
 export type Paragraph = {
     text?: string;
     image?: string;
+    images?: string[];
     type: ParagraphType;
     span?: 1 | 2;
 }

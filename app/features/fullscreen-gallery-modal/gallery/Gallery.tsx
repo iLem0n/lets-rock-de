@@ -5,15 +5,12 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { useGalleryContext } from "@/app/features/fullscreen-gallery-modal/GalleryContext";
 
-interface ImageGalleryProps {
-    onClose: () => void;
-}
-
-export default function ImageGallery({ onClose }: ImageGalleryProps) {
+export default function ImageGallery() {
     const {
         images,
         activeIndex,
-        setActiveIndex
+        setActiveIndex,
+        onClose
     } = useGalleryContext();
 
     useEffect(() => {
@@ -61,7 +58,10 @@ export default function ImageGallery({ onClose }: ImageGalleryProps) {
                     alt=""
                     width={1080}
                     height={900}
-                    style={{ justifyContent: "center" }}
+                    style={{
+                        justifyContent: "center",
+                        border: '2px solid gray'
+                    }}
                 />
             </ActiveImageContainer>
         </RootPaper>

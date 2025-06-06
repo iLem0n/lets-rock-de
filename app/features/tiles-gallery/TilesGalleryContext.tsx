@@ -10,7 +10,7 @@ interface TilesGalleryContextType {
     setHoverIndex: (hoverIndex: LayoutIndex | null) => void;
     centerpieceReady: boolean;
     setCenterpieceReady: (ready: boolean) => void;
-    openGallery?: () => void;
+    openGallery: (imageId: number) => void;
 }
 
 const TilesGalleryContext = createContext<TilesGalleryContextType | undefined>(undefined);
@@ -42,7 +42,7 @@ export function TilesGalleryProvider({
         ...leftImageSources,
         ...rightImageSources,
     ].map((ref, index) => ({
-        id: index,
+        id: index + 1,
         src: ref.src,
         layoutIndex: ref.layoutIndex,
     }));
@@ -50,10 +50,10 @@ export function TilesGalleryProvider({
     const [hoverIndex, setHoverIndex] = useState<LayoutIndex | null>(null);
     const [centerpieceReady, setCenterpieceReady] = useState<boolean>(false);
 
-    const [isGalleryOpen, setIsGalleryOpen] = useState<boolean>(false);
+    const [fullscreenGalleryImageId, setFullscreenGalleryImageId] = useState<number | null>(null);
 
-    const openGallery = () => {
-        setIsGalleryOpen(true);
+    const openGallery = (imageId: number) => {
+        setFullscreenGalleryImageId(imageId);
     }
 
     return (
@@ -67,8 +67,9 @@ export function TilesGalleryProvider({
         }}>
             {children}
             <FullscreenGalleryModal
-                isOpen={isGalleryOpen}
-                onClose={() => setIsGalleryOpen(false)}
+                isOpen={!!fullscreenGalleryImageId}
+                imageId={fullscreenGalleryImageId ?? undefined}
+                onClose={() => setFullscreenGalleryImageId(null)}
             />
         </TilesGalleryContext.Provider>
     );
