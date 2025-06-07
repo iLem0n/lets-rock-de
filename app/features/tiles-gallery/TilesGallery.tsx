@@ -3,15 +3,33 @@ import { TilesGalleryProvider } from "@/app/features/tiles-gallery/TilesGalleryC
 import Centerpiece from "@/app/features/tiles-gallery/components/Centerpiece";
 import { Typography } from "@mui/material";
 import useIsMobile from "@/app/hoks/isMobile";
+import { useEffect, useState } from "react";
 
 export default function TilesGallery() {
     const isMobile = useIsMobile();
+
+    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const getInnerWidth = () => {
+            setInnerWidth(window.innerWidth);
+        };
+
+        // Initial check
+        getInnerWidth();
+
+        // Add event listener for window resize
+        window.addEventListener('resize', getInnerWidth);
+
+        // Cleanup
+        return () => window.removeEventListener('resize', getInnerWidth);
+    }, []);
 
     return (
         <TilesGalleryProvider>
             <div className="absolute top-0 left-0 w-screen z-50 text-pink-600 font-black">
                 <Typography variant="body1" className="text-center mb-4">
-                    {isMobile ? "MOBILE" : "NOT MOBILE"}
+                    {isMobile ? "MOBILE" : "NOT MOBILE"}:&nbsp;{innerWidth}px
                 </Typography>
             </div>
             {isMobile ? (
