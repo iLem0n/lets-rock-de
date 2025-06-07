@@ -1,9 +1,37 @@
+"use client";
+
 import TopicView from "@/app/features/home-content/components/TopicView";
 import { Topic } from "@/app/features/home-content/types/types";
 import { ParagraphType } from "@/app/features/home-content/types/constants";
 import { Container, Grid, Typography } from "@mui/material";
 import { CONTACT } from "@/app/data-constants";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const footerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { 
+            duration: 0.7,
+            ease: "easeOut"
+        }
+    }
+};
+
+const taglineVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+        opacity: 1, 
+        scale: 1,
+        transition: { 
+            duration: 0.8,
+            delay: 0.3,
+            ease: "easeOut"
+        }
+    }
+};
 
 const topics: Topic[] = [
     {
@@ -125,46 +153,60 @@ const topics: Topic[] = [
 ]
 
 
-export default async function HomeContent() {
+export default function HomeContent() {
     return (
         <div className="mt-8">
             {topics.map((topic, index) => (
                 <TopicView key={index} topic={topic} />
             ))}
             <Container maxWidth="xl" className="mb-32">
-                <div className="two-column-container">
-                    <Typography variant="body1" className="text-left pb-8" color="red">
-                        L e t s  R o c k - immer voller Einsatz für das beste Bild - und Freude auf kreative Zusammenarbeit.
-                    </Typography>
-                    <Grid container spacing={2} rowSpacing={0} columns={2}>
-                        <Grid size={1} textTransform="uppercase">
-                            <Typography variant="body1">
-                                {CONTACT.firstName}&nbsp;{CONTACT.lastName}
-                            </Typography>
-                        </Grid>
-                        <Grid size={1}>
-                            <Link href={`tel:${CONTACT.phone.number}`}>
-                                <Typography variant="body1" sx={{ textAlign: 'right' }}>
-                                    {CONTACT.phone.label}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={footerVariants}
+                >
+                    <div className="two-column-container">
+                        <Typography variant="body1" className="text-left pb-8" color="red">
+                            L e t s  R o c k - immer voller Einsatz für das beste Bild - und Freude auf kreative Zusammenarbeit.
+                        </Typography>
+                        <Grid container spacing={2} rowSpacing={0} columns={2}>
+                            <Grid size={1} textTransform="uppercase">
+                                <Typography variant="body1">
+                                    {CONTACT.firstName}&nbsp;{CONTACT.lastName}
                                 </Typography>
-                            </Link>
-                        </Grid>
-                        <Grid size={1}>
-                            <Typography variant="body1">
-                                {CONTACT.nameAffix}
-                            </Typography>
-                        </Grid>
-                        <Grid size={1}>
-                            <Link href={`mailto:${CONTACT.email}`}>
-                                <Typography variant="body1"sx={{ textAlign: 'right' }}>
-                                    {CONTACT.email}
+                            </Grid>
+                            <Grid size={1}>
+                                <Link href={`tel:${CONTACT.phone.number}`}>
+                                    <Typography variant="body1" sx={{ textAlign: 'right' }}>
+                                        {CONTACT.phone.label}
+                                    </Typography>
+                                </Link>
+                            </Grid>
+                            <Grid size={1}>
+                                <Typography variant="body1">
+                                    {CONTACT.nameAffix}
                                 </Typography>
-                            </Link>
+                            </Grid>
+                            <Grid size={1}>
+                                <Link href={`mailto:${CONTACT.email}`}>
+                                    <Typography variant="body1"sx={{ textAlign: 'right' }}>
+                                        {CONTACT.email}
+                                    </Typography>
+                                </Link>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </div>
+                    </div>
+                </motion.div>
 
-                <Typography variant="h1" className="text-center w-full">together we can do magic</Typography>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={taglineVariants}
+                >
+                    <Typography variant="h1" className="text-center w-full">together we can do magic</Typography>
+                </motion.div>
             </Container>
         </div>
     )

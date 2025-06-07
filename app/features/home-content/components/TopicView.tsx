@@ -6,12 +6,50 @@ import { ParagraphType } from "@/app/features/home-content/types/constants";
 import { KeyboardArrowUpTwoTone } from "@mui/icons-material";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 import './styles.css';
 
 interface TopicViewProps {
     topic: Topic;
 }
+
+// Animation variants
+const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { 
+            duration: 0.6,
+            ease: "easeOut"
+        }
+    }
+};
+
+const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { 
+            duration: 0.7,
+            ease: "easeOut"
+        }
+    }
+};
+
+const imageVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+        opacity: 1, 
+        scale: 1,
+        transition: { 
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
 
 export default function TopicView({ topic }: TopicViewProps) {
     const [showBackToTop, setShowBackToTop] = useState(false);
@@ -45,7 +83,14 @@ export default function TopicView({ topic }: TopicViewProps) {
     return (
         <div className="topic-view width-screen mb-16">
             <Container maxWidth="xl">
-                <Typography variant="h2" className="text-left pb-8" sx={{ textAlign: 'justify',  }}>{topic.title}</Typography>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={titleVariants}
+                >
+                    <Typography variant="h2" className="text-left pb-8" sx={{ textAlign: 'justify' }}>{topic.title}</Typography>
+                </motion.div>
                 <div className="two-column-container">
                     {topic.paragraphs.map((paragraph, index) => {
                         switch (paragraph.type) {
@@ -53,7 +98,14 @@ export default function TopicView({ topic }: TopicViewProps) {
                                 return (
                                     <div key={index}
                                          className={`pb-8 no-break ${paragraph.span === 1 ? 'half-width' : ''}`}>
-                                        <Typography variant="body1" color="textPrimary">{paragraph.text}</Typography>
+                                        <motion.div
+                                            initial="hidden"
+                                            whileInView="visible"
+                                            viewport={{ once: true, margin: "-50px" }}
+                                            variants={textVariants}
+                                        >
+                                            <Typography variant="body1" color="textPrimary">{paragraph.text}</Typography>
+                                        </motion.div>
                                     </div>
                                 );
                             case ParagraphType.Image:
@@ -62,31 +114,45 @@ export default function TopicView({ topic }: TopicViewProps) {
                                         {paragraph.images && paragraph.images.length > 0 && (
                                             <span>
                                                 {paragraph.images.map((image, imgIndex) => (
-                                                    <Image
+                                                    <motion.div
                                                         key={imgIndex}
-                                                        src={image}
-                                                        alt=""
-                                                        className="topic-image"
-                                                        width={800}
-                                                        height={600}
-                                                        style={{
-                                                            border: '2px solid gray'
-                                                        }}
-                                                    />
+                                                        initial="hidden"
+                                                        whileInView="visible"
+                                                        viewport={{ once: true, margin: "-50px" }}
+                                                        variants={imageVariants}
+                                                    >
+                                                        <Image
+                                                            src={image}
+                                                            alt=""
+                                                            className="topic-image"
+                                                            width={800}
+                                                            height={600}
+                                                            style={{
+                                                                border: '2px solid gray'
+                                                            }}
+                                                        />
+                                                    </motion.div>
                                                 ))}
                                             </span>
                                         )}
                                         {paragraph.image && (
-                                            <Image
-                                                src={paragraph.image!}
-                                                alt=""
-                                                className="topic-image"
-                                                width={800}
-                                                height={600}
-                                                style={{
-                                                    border: '2px solid gray'
-                                                }}
-                                            />
+                                            <motion.div
+                                                initial="hidden"
+                                                whileInView="visible"
+                                                viewport={{ once: true, margin: "-50px" }}
+                                                variants={imageVariants}
+                                            >
+                                                <Image
+                                                    src={paragraph.image!}
+                                                    alt=""
+                                                    className="topic-image"
+                                                    width={800}
+                                                    height={600}
+                                                    style={{
+                                                        border: '2px solid gray'
+                                                    }}
+                                                />
+                                            </motion.div>
                                         )}
                                     </div>
                                 )

@@ -58,7 +58,9 @@ export default function Centerpiece() {
                         <Typography variant="body2">
                             <Link href="/impressum">Impressum</Link>
                         </Typography>
-                        <Image src="/assets/images/logo.png" alt="" width={100} height={100} />
+                        <Link href="/details">
+                            <Image src="/assets/images/logo.png" alt="" width={100} height={100} />
+                        </Link>
                         <Typography variant="body2">
                             <Link href="/agb">Rechtliches</Link>
                         </Typography>

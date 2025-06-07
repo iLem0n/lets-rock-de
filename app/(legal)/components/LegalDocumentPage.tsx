@@ -31,7 +31,7 @@ export default async function LegalDocumentPage({ title, documentPath }: LegalDo
             className="legal-content"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
             sx={{
-              columnCount: { xs: 1, md: 2 },
+              columnCount: { sm: 1, md: 2 },
               columnGap: '2rem',
               columnRule: '1px solid rgba(255, 255, 255, 0.1)',
               textAlign: 'justify',

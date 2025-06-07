@@ -16,13 +16,25 @@ export default function GalleryNavigation() {
     return (
         <RootBox>
             <Stack spacing={1} justifyContent="center" alignItems="center">
-                <IconButton className="w-fit" onClick={onClose}><HomeTwoTone sx={{ color: "white", fontSize: 54, opacity: .5, width: 'fit-content' }} /></IconButton>
+                <IconButton 
+                    className="w-fit" 
+                    onClick={onClose} 
+                    aria-label="home"
+                >
+                    <HomeTwoTone sx={{ color: "white", fontSize: 54, opacity: .5, width: 'fit-content' }} />
+                </IconButton>
                 {/*<IconButton><FullscreenTwoTone sx={{ color: "white", fontSize: 54, opacity: .5 }}/></IconButton>*/}
                 <Stack direction="row" spacing={1}>
-                    <IconButton onClick={() => setActiveIndex(activeIndex === 0 ? images.length - 1 : activeIndex - 1)}>
+                    <IconButton 
+                        onClick={() => setActiveIndex(activeIndex === 0 ? images.length - 1 : activeIndex - 1)}
+                        aria-label="previous image"
+                    >
                         <ArrowCircleLeftTwoTone sx={{ color: "white", fontSize: 54, opacity: .5 }} />
                     </IconButton>
-                    <IconButton onClick={() => setActiveIndex(activeIndex === images.length - 1 ? 0 : activeIndex + 1)}>
+                    <IconButton 
+                        onClick={() => setActiveIndex(activeIndex === images.length - 1 ? 0 : activeIndex + 1)}
+                        aria-label="next image"
+                    >
                         <ArrowCircleRightTwoTone sx={{ color: "white", fontSize: 54, opacity: .5 }} />
                     </IconButton>
                 </Stack>

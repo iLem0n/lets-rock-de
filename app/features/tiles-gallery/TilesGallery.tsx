@@ -2,7 +2,7 @@ import SideGallery from "@/app/features/tiles-gallery/components/SideGallery";
 import { TilesGalleryProvider } from "@/app/features/tiles-gallery/TilesGalleryContext";
 import Centerpiece from "@/app/features/tiles-gallery/components/Centerpiece";
 
-export default async function TilesGallery() {
+export default function TilesGallery() {
 
     return (
         <TilesGalleryProvider>
