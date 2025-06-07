@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 export default function TilesGallery() {
     const isMobile = useIsMobile();
 
-    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+    const [innerWidth, setInnerWidth] = useState(0);
 
     useEffect(() => {
         const getInnerWidth = () => {
