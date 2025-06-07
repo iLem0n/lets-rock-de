@@ -1,30 +1,11 @@
 import SideGallery from "@/app/features/tiles-gallery/components/SideGallery";
 import { TilesGalleryProvider } from "@/app/features/tiles-gallery/TilesGalleryContext";
 import Centerpiece from "@/app/features/tiles-gallery/components/Centerpiece";
-import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
-import { useTheme } from "@mui/material";
+import useIsMobile from "@/app/hoks/isMobile";
 
 export default function TilesGallery() {
-    const [isMobile, setIsMobile] = useState(false);
-    const theme = useTheme();
-
-    // Check if we're on mobile
-    useEffect(() => {
-        const checkIfMobile = () => {
-            console.log(window.innerWidth);
-            setIsMobile(window.innerWidth < theme.breakpoints.values.md); // Common breakpoint for mobile
-        };
-
-        // Initial check
-        checkIfMobile();
-
-        // Add event listener for window resize
-        window.addEventListener('resize', checkIfMobile);
-
-        // Cleanup
-        return () => window.removeEventListener('resize', checkIfMobile);
-    }, []);
+    const isMobile = useIsMobile();
 
     return (
         <TilesGalleryProvider>

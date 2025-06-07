@@ -3,6 +3,7 @@ import { Jost} from 'next/font/google';
 import "./globals.css";
 import GlobalProviders from "@/app/GlobalProviders";
 import { ReactNode } from "react";
+import BackToTopButton from "@/app/components/BackToTopButton";
 
 
 const jost = Jost({
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body>
         <GlobalProviders>
             {children}
+            <BackToTopButton />
         </GlobalProviders>
       </body>
     </html>

@@ -3,8 +3,9 @@ import { Box, BoxProps } from "@mui/material";
 export default function NewspaperLayout<T>({ children, ...rest }: BoxProps) {
     return (
         <Box
+            className="newspaper-layout"
             sx={{
-                columnCount: { sm: 1, md: 2 },
+                columnCount: { xs: 1, md: 2 },
                 columnGap: '2rem',
                 // columnRule: '1px solid rgba(255, 255, 255, 0.1)',
                 textAlign: 'justify',
@@ -16,7 +17,7 @@ export default function NewspaperLayout<T>({ children, ...rest }: BoxProps) {
                 },
                 '& table': {
                     display: 'block',
-                    width: '100%',
+                    // width: '100%',
                     overflowX: 'auto'
                 }
             }}
