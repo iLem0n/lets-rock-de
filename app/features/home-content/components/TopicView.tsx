@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import './styles.css';
+import NewspaperLayout from "@/app/components/NewspaperLayout";
 
 interface TopicViewProps {
     topic: Topic;
@@ -91,13 +92,15 @@ export default function TopicView({ topic }: TopicViewProps) {
                 >
                     <Typography variant="h2" className="text-left pb-8" sx={{ textAlign: 'justify' }}>{topic.title}</Typography>
                 </motion.div>
-                <div className="two-column-container">
+                <NewspaperLayout>
                     {topic.paragraphs.map((paragraph, index) => {
                         switch (paragraph.type) {
                             case ParagraphType.Text:
                                 return (
-                                    <div key={index}
-                                         className={`pb-8 no-break ${paragraph.span === 1 ? 'half-width' : ''}`}>
+                                    <div
+                                        key={index}
+                                        className={`pb-8 no-break ${paragraph.span === 1 ? 'half-width' : ''}`}
+                                    >
                                         <motion.div
                                             initial="hidden"
                                             whileInView="visible"
@@ -162,6 +165,9 @@ export default function TopicView({ topic }: TopicViewProps) {
                                 return null;
                         }
                     })}
+                </NewspaperLayout>
+                <div className="two-column-container">
+
                 </div>
             </Container>
 
