@@ -6,7 +6,7 @@ import { styled } from "@mui/material";
 
 export default function TestPage() {
     return (
-        <RootContainer className="root-container bg-blue-100 flex max-h-screen gap-4 p-4">
+        <RootContainer className="root-container flex max-h-screen gap-4 p-4">
             <GapFiller className="gap-filler"/>
             <SideGallery side='left' />
             <Centerpiece />
@@ -18,7 +18,7 @@ export default function TestPage() {
 
 function Centerpiece() {
     return (
-        <CenterpieceContainer className="centerpiece bg-green-200">
+        <CenterpieceContainer className="centerpiece">
             <Image
                 src="/assets/images/centerpiece.png"
                 alt=""
@@ -56,16 +56,16 @@ function SideGallery({ side }: SideGalleryProps) {
     }, []);
 
     return (
-        <SideGalleryContainer className={`side-gallery-${side} bg-blue-200`}>
+        <SideGalleryContainer className={`side-gallery-${side}`}>
             {windowSize && (
-                <div className="text-sm text-gray-700 mb-2 absolute top-0 left-0 p-4">
+                <div className="text-sm mb-2 absolute top-0 left-0 p-4">
                     Window Size: {windowSize.width} x {windowSize.height}
                 </div>
             )}
             {Array.from({ length: 8 }, (_, i) => (
                 <div
                     key={i}
-                    className="bg-amber-500 aspect-square"
+                    className="aspect-square"
                     style={{
                         // maxHeight: 'calc(calc(100vh - 16px - 16px - calc(16px * 4)) / 4)',
                         aspectRatio: '1 / 1',
@@ -81,6 +81,7 @@ function SideGallery({ side }: SideGalleryProps) {
                             height: '100%',
                             objectFit: 'cover',
                             aspectRatio: '1 / 1',
+                            maxHeight: 'calc(calc(100vh - 16px - 16px - calc(16px * 4)) / 4)',
                         }}
                     />
                 </div>
@@ -121,7 +122,7 @@ const SideGalleryContainer = styled('div') (({ theme }) => ({
     width: 'auto',
     overflow: 'hidden',
     flexShrink: 1,
-    gridTemplateRows: 'repeat(8, 1fr)',
+    gridTemplateRows: 'repeat(4, 1fr)',
     gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
     gap: theme.spacing(2),
 }));
