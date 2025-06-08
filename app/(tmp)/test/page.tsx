@@ -21,11 +21,6 @@ export default function TestPage() {
             }
         };
 
-        // 1164 / 1750
-        // x / sideGalleryHeight
-
-
-
         // get max width based on aspect ratio of 1164 / 1750
         // Initial height update
         updateSideGalleryHeight();
@@ -47,8 +42,7 @@ export default function TestPage() {
             </div>
             <GapFiller className="gap-filler"/>
             <SideGallery ref={sideGalleryRef} side='left' />
-            <Centerpiece style={{ maxHeight: `${sideGalleryHeight}px`, width: `${centerPieceWidth}px` }} />
-            {/*<Centerpiece />*/}
+            <Centerpiece style={{ maxHeight: `${sideGalleryHeight}px`, maxWidth: `${centerPieceWidth}px` }} />
             <SideGallery side='right' />
             <GapFiller className="gap-filler"/>
         </RootContainer>
@@ -141,7 +135,7 @@ const RootContainer = styled('div') (({ theme }) => ({
 
 const CenterpieceContainer = styled('div') (({ theme }) => ({
     display: 'flex',
-    flex:  '0 1 auto',
+    flex:  '1 1 100%',
     height: 'auto',
     maxHeight: '100vh',
     width: 'auto',
