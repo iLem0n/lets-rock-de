@@ -36,13 +36,13 @@ export default function TilesGallery() {
                 // Mobile layout - stacked vertically in the specified order
                 <div className="flex flex-col w-screen">
                     <div className="w-full">
+                        <Centerpiece />
+                    </div>
+                    <div className="w-full">
                         <SideGallery side="left" />
                     </div>
                     <div className="w-full">
                         <SideGallery side="right" />
-                    </div>
-                    <div className="w-full">
-                        <Centerpiece />
                     </div>
                 </div>
             ) : (

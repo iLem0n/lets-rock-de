@@ -3,7 +3,7 @@
 import Tile from "@/app/features/tiles-gallery/components/Tile";
 import { useTilesGallery } from "@/app/features/tiles-gallery/TilesGalleryContext";
 import { clsx } from "clsx";
-import { useSafariDetection } from "@/app/helper/isSafari";
+import { useSafariDetection } from "@/app/hoks/isSafari";
 
 interface SideGalleryProps {
     side: 'left' | 'right';

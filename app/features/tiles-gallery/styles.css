@@ -92,6 +92,12 @@
     position: relative;
 }
 
+@media (max-width: 900px) {
+    .site-gallery-container-base {
+        padding: 8px 16px;
+    }
+}
+
 .site-gallery-container-safari {
     aspect-ratio: 1 / 2;
 }
@@ -104,6 +110,14 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+}
+
+@media (max-width: 900px) {
+    .centerpiece-container-base {
+        width: 100vw;
+        height: 100vh;
+        margin-bottom: 16px;
+    }
 }
 
 .centerpiece-container-safari {
@@ -146,6 +160,13 @@
     }
 }
 
+@media (max-width: 900px) {
+    .centerpiece-image-wrapper {
+        width: auto;
+        height: 100%;
+    }
+}
+
 .tile-container {
     aspect-ratio: 1 / 1;
     width: 100%;
@@ -178,6 +199,8 @@
         clear: both;
     }
 }
+
+
 
 .tile-container.background {
     opacity: 0.5 !important;

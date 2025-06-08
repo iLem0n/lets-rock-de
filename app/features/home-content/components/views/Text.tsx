@@ -8,7 +8,7 @@ export default function ParagraphText({ paragraph }: { paragraph: Paragraph }) {
             <motion.div
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, margin: "-100px" }}
                 variants={variants}
             >
                 <Typography variant="body1" color="textPrimary">{paragraph.text}</Typography>

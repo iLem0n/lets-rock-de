@@ -10,7 +10,6 @@ export default function NewspaperLayout<T>({ children, ...rest }: BoxProps) {
                 // columnRule: '1px solid rgba(255, 255, 255, 0.1)',
                 textAlign: 'justify',
                 mt: 4,
-                px: 2,
                 '& h1, & h2, & h3': {
                     breakAfter: 'avoid',
                     columnSpan: 'none'

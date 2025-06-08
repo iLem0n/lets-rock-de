@@ -1,11 +1,7 @@
 "use client";
 
 import { Topic } from "@/app/features/home-content/types/types";
-import { Container, Typography, Fab } from "@mui/material";
-import { ParagraphType } from "@/app/features/home-content/types/constants";
-import { KeyboardArrowUpTwoTone } from "@mui/icons-material";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { Container, Typography} from "@mui/material";
 import { motion } from "framer-motion";
 
 import './styles.css';
@@ -30,8 +26,6 @@ export default function TopicView({ topic }: TopicViewProps) {
                         variant="h2"
                         sx={{
                             textAlign: 'justify',
-                            pb: 8,
-                            paddingX: { md: 4, xs: 2 },
                         }}>
                         {topic.title}
                     </Typography>
