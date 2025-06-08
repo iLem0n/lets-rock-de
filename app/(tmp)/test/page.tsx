@@ -57,11 +57,6 @@ function SideGallery({ side }: SideGalleryProps) {
 
     return (
         <SideGalleryContainer className={`side-gallery-${side}`}>
-            {windowSize && (
-                <div className="text-sm mb-2 absolute top-0 left-0 p-4">
-                    Window Size: {windowSize.width} x {windowSize.height}
-                </div>
-            )}
             {Array.from({ length: 8 }, (_, i) => (
                 <div
                     key={i}
@@ -117,7 +112,7 @@ const CenterpieceContainer = styled('div') (({ theme }) => ({
 
 const SideGalleryContainer = styled('div') (({ theme }) => ({
     display: 'grid',
-    height: '100%',
+    height: 'auto',
     maxHeight: '100vh',
     width: 'auto',
     overflow: 'hidden',
