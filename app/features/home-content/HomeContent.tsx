@@ -9,6 +9,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import NewspaperLayout from "@/app/components/NewspaperLayout";
 import useIsMobile from "@/app/hooks/isMobile";
+import TogetherWeCanDoMagic from "@/app/components/together-we-can-do-magic";
 
 const footerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -17,19 +18,6 @@ const footerVariants = {
         y: 0,
         transition: {
             duration: 0.7,
-            ease: "easeOut"
-        }
-    }
-};
-
-const taglineVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-            duration: 0.8,
-            delay: 0.3,
             ease: "easeOut"
         }
     }
@@ -206,17 +194,7 @@ export default function HomeContent() {
                     </motion.div>
             </NewspaperLayout>
 
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={taglineVariants}
-                style={{
-                    marginTop: '64px',
-                }}
-            >
-                <Typography variant="h1" className="text-center w-full">together we can do magic</Typography>
-            </motion.div>
+            <TogetherWeCanDoMagic />
         </Container>
     )
 }

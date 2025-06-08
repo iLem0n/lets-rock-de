@@ -13,11 +13,11 @@ interface TopicViewProps {
     topic: Topic;
 }
 
-export default function TopicView({ topic }: TopicViewProps) {
+export default function TopicView({ topic, ...rest }: TopicViewProps & HTMLAttributes<HTMLDivElement>) {
     const isMobile = useIsMobile();
 
     return (
-        <div className="topic-view mb-16">
+        <div className="topic-view mb-16" {...rest}>
             <Container maxWidth="xl">
                 <motion.div
                     initial="hidden"

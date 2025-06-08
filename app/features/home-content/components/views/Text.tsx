@@ -15,7 +15,7 @@ export default function ParagraphText({ paragraph }: { paragraph: Paragraph }) {
                 variants={variants}
             >
                 <Typography
-                    variant="body1"
+                    variant="body2"
                     color="textPrimary"
                     sx={{
                         textAlign: isMobile ? 'left' : 'justify',
