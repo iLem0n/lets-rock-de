@@ -32,7 +32,7 @@ export default function TestPage() {
         return () => {
             window.removeEventListener('resize', updateSideGalleryHeight);
         };
-    }, []);
+    }, [sideGalleryRef]);
 
 
     return (
