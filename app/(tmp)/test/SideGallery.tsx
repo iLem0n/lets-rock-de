@@ -44,10 +44,10 @@ export default SideGallery;
 const SideGalleryContainer = styled('div') (({ theme }) => ({
     display: 'grid',
     height: 'fit-content',
-    maxHeight: '100vh',
+    maxHeight: 'calc(100vh-32px)',
     width: 'auto',
     overflow: 'hidden',
-    flexShrink: 1,
+    flexShrink: 2,
     gridTemplateRows: 'repeat(4, 1fr)',
     gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
     gap: theme.spacing(2),
