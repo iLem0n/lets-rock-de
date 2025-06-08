@@ -8,6 +8,7 @@ import './styles.css';
 import NewspaperLayout from "@/app/components/NewspaperLayout";
 import { renderParagraph } from "@/app/features/home-content/components/views/provider";
 import useIsMobile from "@/app/hooks/isMobile";
+import { HTMLAttributes } from "react";
 
 interface TopicViewProps {
     topic: Topic;
