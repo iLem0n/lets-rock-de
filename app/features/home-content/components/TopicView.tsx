@@ -7,12 +7,15 @@ import { motion } from "framer-motion";
 import './styles.css';
 import NewspaperLayout from "@/app/components/NewspaperLayout";
 import { renderParagraph } from "@/app/features/home-content/components/views/provider";
+import useIsMobile from "@/app/hooks/isMobile";
 
 interface TopicViewProps {
     topic: Topic;
 }
 
 export default function TopicView({ topic }: TopicViewProps) {
+    const isMobile = useIsMobile();
+
     return (
         <div className="topic-view mb-16">
             <Container maxWidth="xl">
@@ -25,8 +28,9 @@ export default function TopicView({ topic }: TopicViewProps) {
                     <Typography
                         variant="h2"
                         sx={{
-                            textAlign: 'justify',
-                        }}>
+                            textAlign: isMobile ? 'left' : 'justify',
+                        }}
+                    >
                         {topic.title}
                     </Typography>
                 </motion.div>

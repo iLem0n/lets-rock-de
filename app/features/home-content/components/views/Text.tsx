@@ -1,8 +1,11 @@
 import { Paragraph } from "@/app/features/home-content/types/types";
 import { motion } from "framer-motion";
 import { Typography } from "@mui/material";
+import useIsMobile from "@/app/hooks/isMobile";
 
 export default function ParagraphText({ paragraph }: { paragraph: Paragraph }) {
+    const isMobile = useIsMobile();
+
     return (
         <div className={`cols pb-8 no-break ${paragraph.span === 1 ? 'half-width' : ''}`}>
             <motion.div
@@ -11,7 +14,13 @@ export default function ParagraphText({ paragraph }: { paragraph: Paragraph }) {
                 viewport={{ once: true, margin: "-100px" }}
                 variants={variants}
             >
-                <Typography variant="body1" color="textPrimary">{paragraph.text}</Typography>
+                <Typography
+                    variant="body1"
+                    color="textPrimary"
+                    sx={{
+                        textAlign: isMobile ? 'left' : 'justify',
+                    }}
+                >{paragraph.text}</Typography>
             </motion.div>
         </div>
     );
