@@ -3,11 +3,12 @@
 import TopicView from "@/app/features/home-content/components/TopicView";
 import { Topic } from "@/app/features/home-content/types/types";
 import { ParagraphType } from "@/app/features/home-content/types/constants";
-import { Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import { CONTACT } from "@/app/data-constants";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import NewspaperLayout from "@/app/components/NewspaperLayout";
+import useIsMobile from "@/app/hooks/isMobile";
 
 const footerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -155,50 +156,56 @@ const topics: Topic[] = [
 
 
 export default function HomeContent() {
+    const isMobile = useIsMobile();
+
     return (
-        <Container maxWidth="xl" sx={{ mb: 16, mt: 4 }}>
+        <Container maxWidth="xl" sx={{ mb: 16, mt: 4, p: 0 }}>
             {topics.map((topic, index) => (
                 <TopicView key={index} topic={topic} />
             ))}
             <NewspaperLayout>
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-50px" }}
-                    variants={footerVariants}
-                >
-
-                    <Typography variant="body1" className="text-left pb-8" color="red">
-                        L e t s  R o c k - immer voller Einsatz für das beste Bild - und Freude auf kreative Zusammenarbeit.
-                    </Typography>
-                    <Grid container spacing={2} rowSpacing={0} columns={2}>
-                        <Grid size={1} textTransform="uppercase">
-                            <Typography variant="body1">
-                                {CONTACT.firstName}&nbsp;{CONTACT.lastName}
-                            </Typography>
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-50px" }}
+                        variants={footerVariants}
+                    >
+                        <Typography
+                            variant="body1"
+                            className="pb-8 text-center"
+                            color="red"
+                            sx={{
+                                ml: 4,
+                                mr: isMobile ? 4 : 0,
+                                textAlign: isMobile ? 'center' : 'justify',
+                            }}
+                        >
+                            L e t s  R o c k - immer voller Einsatz für das beste Bild - und Freude auf kreative Zusammenarbeit.
+                        </Typography>
+                        <Grid container spacing={2} rowSpacing={0} columns={{ xs: 1, md: 2 }} justifyItems="center" sx={{ mr: 4 }}>
+                            {
+                                isMobile
+                                    ? (
+                                        <>
+                                            <NameGridItem />
+                                            <NameAffixGridItem />
+                                            <PhoneGridItem />
+                                            <EmailGridItem />
+                                        </>
+                                    )
+                                    : (
+                                        <>
+                                            <NameGridItem />
+                                            <PhoneGridItem />
+                                            <NameAffixGridItem />
+                                            <EmailGridItem />
+                                        </>
+                                    )
+                            }
                         </Grid>
-                        <Grid size={1}>
-                            <Link href={`tel:${CONTACT.phone.number}`}>
-                                <Typography variant="body1" sx={{ textAlign: 'right' }}>
-                                    {CONTACT.phone.label}
-                                </Typography>
-                            </Link>
-                        </Grid>
-                        <Grid size={1}>
-                            <Typography variant="body1">
-                                {CONTACT.nameAffix}
-                            </Typography>
-                        </Grid>
-                        <Grid size={1}>
-                            <Link href={`mailto:${CONTACT.email}`}>
-                                <Typography variant="body1"sx={{ textAlign: 'right' }}>
-                                    {CONTACT.email}
-                                </Typography>
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </motion.div>
+                    </motion.div>
             </NewspaperLayout>
+
             <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -213,3 +220,40 @@ export default function HomeContent() {
         </Container>
     )
 }
+
+
+const NameGridItem = () => (
+    <Grid size={1} textTransform="uppercase">
+        <Typography variant="body1" sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+            {CONTACT.firstName}&nbsp;{CONTACT.lastName}
+        </Typography>
+    </Grid>
+)
+
+const NameAffixGridItem = () => (
+    <Grid size={1}>
+        <Typography variant="body1" sx={{ textAlign: {  xs: 'center', md: 'left' } }}>
+            {CONTACT.nameAffix}
+        </Typography>
+    </Grid>
+)
+
+const PhoneGridItem = () => (
+    <Grid size={1}>
+        <Link href={`tel:${CONTACT.phone.number}`}>
+            <Typography variant="body1" sx={{ textAlign: {  xs: 'center', md: 'right' } }}>
+                {CONTACT.phone.label}
+            </Typography>
+        </Link>
+    </Grid>
+)
+
+const EmailGridItem = () => (
+    <Grid size={1}>
+        <Link href={`mailto:${CONTACT.email}`}>
+            <Typography variant="body1" sx={{ textAlign: {  xs: 'center', md: 'right' } }}>
+                {CONTACT.email}
+            </Typography>
+        </Link>
+    </Grid>
+)
