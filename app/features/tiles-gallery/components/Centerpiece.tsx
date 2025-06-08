@@ -4,7 +4,7 @@ import Image from "next/image";
 import '../styles.css';
 import { useEffect, useState } from "react";
 import { useTilesGallery } from "../TilesGalleryContext";
-import { useSafariDetection } from "@/app/hoks/isSafari";
+import { useSafariDetection } from "@/app/hooks/isSafari";
 import { clsx } from "clsx";
 import { Stack, Typography } from "@mui/material";
 import Link from "next/link";

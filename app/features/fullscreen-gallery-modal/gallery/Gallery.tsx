@@ -73,6 +73,7 @@ const RootPaper = styled(Paper) (({ theme }) => ({
     width: '100vw',
     backgroundColor: '#323232CC',
     padding: theme.spacing(4, 4),
+    alignContent: 'center',
 }));
 
 const ActiveImageContainer = styled('div')(({ theme }) => ({

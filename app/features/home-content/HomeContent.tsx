@@ -156,7 +156,7 @@ const topics: Topic[] = [
 
 export default function HomeContent() {
     return (
-        <Container maxWidth="xl" sx={{ mb: 32 }}>
+        <Container maxWidth="xl" sx={{ mb: 16, mt: 4 }}>
             {topics.map((topic, index) => (
                 <TopicView key={index} topic={topic} />
             ))}

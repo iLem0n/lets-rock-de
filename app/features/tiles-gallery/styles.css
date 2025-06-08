@@ -114,8 +114,10 @@
 
 @media (max-width: 900px) {
     .centerpiece-container-base {
+        display: block;
         width: 100vw;
-        height: 100vh;
+        height: fit-content;
+        max-height: fit-content;
         margin-bottom: 16px;
     }
 }

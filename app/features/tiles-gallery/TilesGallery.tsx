@@ -2,7 +2,7 @@ import SideGallery from "@/app/features/tiles-gallery/components/SideGallery";
 import { TilesGalleryProvider } from "@/app/features/tiles-gallery/TilesGalleryContext";
 import Centerpiece from "@/app/features/tiles-gallery/components/Centerpiece";
 import { Typography } from "@mui/material";
-import useIsMobile from "@/app/hoks/isMobile";
+import useIsMobile from "@/app/hooks/isMobile";
 import { useEffect, useState } from "react";
 
 export default function TilesGallery() {

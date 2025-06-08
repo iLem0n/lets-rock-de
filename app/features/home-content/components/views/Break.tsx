@@ -1,4 +1,4 @@
-import useIsMobile from "@/app/hoks/isMobile";
+import useIsMobile from "@/app/hooks/isMobile";
 
 export default function ParagraphBreak() {
     const isMobile = useIsMobile();
