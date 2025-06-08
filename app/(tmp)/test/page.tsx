@@ -112,7 +112,7 @@ const CenterpieceContainer = styled('div') (({ theme }) => ({
 
 const SideGalleryContainer = styled('div') (({ theme }) => ({
     display: 'grid',
-    height: 'auto',
+    height: 'fit-content',
     maxHeight: '100vh',
     width: 'auto',
     overflow: 'hidden',
