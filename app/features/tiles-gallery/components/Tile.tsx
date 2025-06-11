@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { ImageRef } from "../types/types";
+import { ImageRef, TileImageRef } from "../types/types";
 import { useTilesGallery } from "@/app/features/tiles-gallery/TilesGalleryContext";
 import { MouseEventHandler, useEffect, useMemo, useRef, useState } from "react";
 import '../styles.css';
@@ -9,7 +9,7 @@ import { clsx } from "clsx";
 import isEqual from 'lodash/isEqual';
 
 interface TileProps {
-    imageRef: ImageRef;
+    imageRef: TileImageRef;
 }
 
 export default function Tile({ imageRef }: TileProps) {
@@ -57,8 +57,8 @@ export default function Tile({ imageRef }: TileProps) {
 
     const animationWave = useMemo((): number => {
         // Determine if the tile is in the left or right column
-        const isRightColumn = imageRef.layoutIndex!.index % 2 === 1; // Right column tiles have odd indices (1, 3, 5, 7)
-        const isLeftSide = imageRef.layoutIndex!.side === 'left';
+        const isRightColumn = imageRef.layoutIndex.index % 2 === 1; // Right column tiles have odd indices (1, 3, 5, 7)
+        const isLeftSide = imageRef.layoutIndex.side === 'left';
 
         // Base delay value - no row-based delay
         let waveValue;

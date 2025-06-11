@@ -19,7 +19,7 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
         layoutOptions: {
             gridProps: {
                 sx: {
-                    justifyContent: 'space-around'
+                    justifyContent: 'space-evenly'
                 }
             }
         }
@@ -34,7 +34,7 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
         layoutOptions: {
             gridProps: {
                 sx: {
-                    justifyContent: 'space-around'
+                    justifyContent: 'space-evenly'
                 }
             }
         }
@@ -48,7 +48,7 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
         layoutOptions: {
             gridProps: {
                 sx: {
-                    justifyContent: 'space-around'
+                    justifyContent: 'space-evenly'
                 }
             }
         }
@@ -62,7 +62,13 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
         layout: 'splitscreen',
         layoutOptions: {
             gridItemProps: [
-                { size: 3 }
+                {
+                    size: 3,
+                    sx: {
+                        height: undefined,
+                        marginTop: '30vh',
+                    }
+                }
             ]
         }
     },
@@ -97,6 +103,17 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 10 b.jpg' },
         ],
         layout: 'splitscreen',
+        layoutOptions: {
+            gridItemProps: [
+                {},
+                {
+                    size: 4,
+                    sx: {
+                        height: undefined,
+                    }
+                }
+            ]
+        }
     },
     {
         images: [
@@ -106,6 +123,19 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 11 d.jpg' },
         ],
         layout: 'grid',
+        layoutOptions: {
+            gridProps: {
+                sx: {
+                    height: undefined,
+                }
+            },
+            gridItemProps: [
+                { size: 6, display: 'flex', flex: "0 1 35%", justifyItems: 'flex-end' },
+                { size: 6, display: 'flex', flex: "0 1 35%", justifyItems: 'flex-start' },
+                { size: 6, display: 'flex', flex: "0 1 35%", justifyItems: 'flex-end' },
+                { size: 6, display: 'flex', flex: "0 1 35%", justifyItems: 'flex-start' },
+            ]
+        }
     },
     {
         anchorImageId: 4,
@@ -132,6 +162,13 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 15 b.jpg' },
         ],
         layout: 'splitscreen',
+        layoutOptions: {
+            gridProps: {
+                sx: {
+                    justifyContent: 'space-evenly'
+                }
+            }
+        }
     },
     {
         anchorImageId: 11,
@@ -140,6 +177,13 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 16 b.jpg' },
         ],
         layout: 'splitscreen',
+        layoutOptions: {
+            gridProps: {
+                sx: {
+                    justifyContent: 'space-evenly'
+                }
+            }
+        }
     },
     {
         images: [
@@ -166,6 +210,19 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 20 b.jpg' },
         ],
         layout: 'splitscreen',
+        layoutOptions: {
+            gridProps: {
+                sx: {
+                    justifyContent: 'space-evenly'
+                }
+            }
+        }
+    },
+    {
+        images: [
+            { src: '/assets/images/gallery/slider 22.jpg' },
+        ],
+        layout: 'fullscreen',
     },
     {
         anchorImageId: 5,
@@ -186,6 +243,13 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 25 b.jpg' },
         ],
         layout: 'splitscreen',
+        layoutOptions: {
+            gridProps: {
+                sx: {
+                    justifyContent: 'space-evenly'
+                }
+            }
+        }
     },
     {
         images: [
@@ -212,6 +276,13 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 29 b.jpg' },
         ],
         layout: 'splitscreen',
+        layoutOptions: {
+            gridProps: {
+                sx: {
+                    justifyContent: 'space-evenly'
+                }
+            }
+        }
     },
     {
         anchorImageId: 13,
@@ -220,6 +291,17 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 30 b.jpg' },
         ],
         layout: 'splitscreen',
+        layoutOptions: {
+            gridItemProps: [
+                {},
+                {
+                    size: 4,
+                    sx: {
+                        height: undefined,
+                    }
+                }
+            ]
+        }
     },
     {
         images: [
@@ -233,6 +315,18 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 32 b.jpg' },
         ],
         layout: 'splitscreen',
+        layoutOptions: {
+            gridItemProps: [
+                {},
+                {
+                    size: 4,
+                    sx: {
+                        height: undefined,
+                        marginBottom: '20vh',
+                    }
+                }
+            ]
+        }
     },
     {
         images: [
@@ -252,6 +346,23 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 35 b.jpg' },
         ],
         layout: 'splitscreen',
+        layoutOptions: {
+            gridItemProps: [
+                {},
+                {
+                    size: 4,
+                    sx: {
+                        height: undefined,
+                    }
+                }
+            ]
+        }
+    },
+    {
+        images: [
+            { src: '/assets/images/gallery/slider 36.jpg' },
+        ],
+        layout: 'fullscreen',
     },
     {
         images: [
@@ -272,6 +383,16 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 39 b.jpg' },
         ],
         layout: 'splitscreen',
+        layoutOptions: {
+            gridItemProps: [
+                {
+                    size: 4,
+                    sx: {
+                        height: undefined,
+                    }
+                }
+            ]
+        }
     },
     {
         images: [
@@ -285,14 +406,15 @@ export const GALLERY_IMAGES: GalleryImageRef[] = [
             { src: '/assets/images/gallery/slider 42 b.jpg' },
         ],
         layout: 'splitscreen',
-    },
-    {
-        images: [
-            { src: '/assets/images/gallery/slider 42 a.jpg' },
-            { src: '/assets/images/gallery/slider 42 b.jpg' },
-            { src: '/assets/images/gallery/slider 42 b.jpg' },
-            { src: '/assets/images/gallery/slider 42 b.jpg' },
-        ],
-        layout: 'grid',
+        layoutOptions: {
+            gridItemProps: [
+                {
+                    size: 4,
+                    sx: {
+                        height: undefined,
+                    }
+                }
+            ]
+        }
     },
 ]

@@ -73,7 +73,10 @@ export default function ImageGallery() {
                         return (
                             <Grid
                                 key={index}
-                                {...activeGalleryImagesRef.layoutOptions?.gridItemProps}
+                                sx={{
+                                    height: '100%',
+                                }}
+                                {...activeGalleryImagesRef.layoutOptions?.gridItemProps?.[index] || {}}
                             >
                                 <Image
                                     src={image.src}
@@ -83,7 +86,6 @@ export default function ImageGallery() {
                                     style={{
                                         border: '2px solid gray',
                                         height: '100%',
-                                        maxHeight: '90vh',
                                         width: 'auto',
                                     }}
                                 />
@@ -105,13 +107,3 @@ const RootPaper = styled(Paper) (({ theme }) => ({
     justifyItems: 'center',
     alignContent: 'center',
 }));
-
-const ActiveImageContainer = styled('div')(({ theme }) => ({
-    display: "flex",
-    flex: "1 1 0",
-    flexGrow: 1,
-    maxHeight: "100%",
-    maxWidth: "100%",
-    padding: theme.spacing(1),
-    justifyContent: "center",
-}))

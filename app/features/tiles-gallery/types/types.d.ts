@@ -7,5 +7,7 @@ export type ImageRef = {
     id?: number;
     src: string;
     position?: string;
-    layoutIndex?: LayoutIndex;
+    // layoutIndex?: LayoutIndex;
 }
+
+export type TileImageRef = ImageRef & { layoutIndex: LayoutIndex }

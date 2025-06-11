@@ -1,12 +1,12 @@
 'use client';
 
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { ImageRef, LayoutIndex } from "@/app/features/tiles-gallery/types/types";
+import { ImageRef, LayoutIndex, TileImageRef } from "@/app/features/tiles-gallery/types/types";
 import FullscreenGalleryModal from "@/app/features/fullscreen-gallery-modal/FullscreenGalleryModal";
 import { leftTitleImageDef, rightTitleImageDef } from "@/app/features/tiles-gallery/data/data";
 
 interface TilesGalleryContextType {
-    images: ImageRef[];
+    images: TileImageRef[];
     hoverIndex: LayoutIndex | null;
     setHoverIndex: (hoverIndex: LayoutIndex | null) => void;
     centerpieceReady: boolean;
@@ -29,19 +29,19 @@ export function TilesGalleryProvider({
 }: Readonly<{
     children: ReactNode,
 }>) {
-    const leftImageSources: Omit<ImageRef, 'id'>[] = leftTitleImageDef.map((imageDef, index) => ({
+    const leftImageSources: Omit<TileImageRef, 'id'>[] = leftTitleImageDef.map((imageDef, index) => ({
         src: `/assets/images/gallery/${imageDef.name}`,
         position: imageDef.position,
         layoutIndex: { index, side: 'left' },
     }));
 
-    const rightImageSources: Omit<ImageRef, 'id'>[] = rightTitleImageDef.map((imageDef, index) => ({
+    const rightImageSources: Omit<TileImageRef, 'id'>[] = rightTitleImageDef.map((imageDef, index) => ({
         src: `/assets/images/gallery/${imageDef.name}`,
         position: imageDef.position,
         layoutIndex: { index, side: 'right' },
     }));
 
-    const titleImages: ImageRef[] = [
+    const titleImages: TileImageRef[] = [
         ...leftImageSources,
         ...rightImageSources,
     ].map((ref, index) => ({
