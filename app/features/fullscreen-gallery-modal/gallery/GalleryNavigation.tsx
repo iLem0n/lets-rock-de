@@ -3,6 +3,8 @@
 import { useGalleryContext } from "@/app/features/fullscreen-gallery-modal/GalleryContext";
 import { ArrowCircleLeftTwoTone, ArrowCircleRightTwoTone, FullscreenTwoTone, HomeTwoTone } from "@mui/icons-material";
 import { Box, IconButton, Stack, styled } from "@mui/material";
+import { useEffect, useState } from "react";
+import { GALLERY_CLOSE_EVENT } from "./Gallery";
 
 export default function GalleryNavigation() {
 
@@ -13,12 +15,32 @@ export default function GalleryNavigation() {
         onClose
     } = useGalleryContext();
 
+    // State to store the animated close handler
+    const [animatedClose, setAnimatedClose] = useState<(() => void) | null>(null);
+
+    // Listen for the gallery close event
+    useEffect(() => {
+        const handleGalleryCloseEvent = (event: CustomEvent) => {
+            if (event.detail && event.detail.handleClose) {
+                setAnimatedClose(() => event.detail.handleClose);
+            }
+        };
+
+        // Add event listener
+        window.addEventListener(GALLERY_CLOSE_EVENT, handleGalleryCloseEvent as EventListener);
+
+        // Clean up
+        return () => {
+            window.removeEventListener(GALLERY_CLOSE_EVENT, handleGalleryCloseEvent as EventListener);
+        };
+    }, []);
+
     return (
         <RootBox>
             <Stack spacing={1} justifyContent="center" alignItems="center">
                 <IconButton 
                     className="w-fit" 
-                    onClick={onClose} 
+                    onClick={animatedClose || onClose} 
                     aria-label="home"
                 >
                     <HomeTwoTone sx={{ color: "white", fontSize: 54, opacity: .5, width: 'fit-content' }} />

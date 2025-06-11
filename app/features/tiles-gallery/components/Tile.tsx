@@ -56,8 +56,7 @@ export default function Tile({ imageRef }: TileProps) {
     }, [hoverIndex]);
 
     const animationWave = useMemo((): number => {
-        // Determine if the tile is in the left or right column
-        const isRightColumn = imageRef.layoutIndex.index % 2 === 1; // Right column tiles have odd indices (1, 3, 5, 7)
+        const isRightColumn = imageRef.layoutIndex.side === 'right';
         const isLeftSide = imageRef.layoutIndex.side === 'left';
 
         // Base delay value - no row-based delay
@@ -115,6 +114,7 @@ export default function Tile({ imageRef }: TileProps) {
                 height={400}
                 className="w-full h-full object-cover"
                 style={{ objectPosition: imageRef.position || 'center center' }}
+                priority
             />
         </div>
     );
