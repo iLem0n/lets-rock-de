@@ -1,6 +1,6 @@
 'use client';
 
-import { Paper, styled } from "@mui/material";
+import { Grid, Paper, styled } from "@mui/material";
 import { useEffect } from "react";
 import Image from "next/image";
 import { useGalleryContext } from "@/app/features/fullscreen-gallery-modal/GalleryContext";
@@ -50,20 +50,49 @@ export default function ImageGallery() {
         }
     }
 
+    const activeGalleryImagesRef = images[activeIndex];
+
     return (
         <RootPaper>
-            <ActiveImageContainer>
-                <Image
-                    src={images[activeIndex].src}
-                    alt=""
-                    width={1080}
-                    height={900}
-                    style={{
-                        justifyContent: "center",
-                        border: '2px solid gray'
+            {/*<ActiveImageContainer>*/}
+                <Grid
+                    container
+                    spacing={2}
+                    sx={{
+                        height: '100%',
+                        width: '100%',
+                        display: 'flex',
+                        maxHeight: '100vh',
+                        maxWidth: '100vw',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        ...activeGalleryImagesRef.layoutOptions?.gridProps?.sx,
                     }}
-                />
-            </ActiveImageContainer>
+                >
+                    {images[activeIndex].images.map((image, index) => {
+                        return (
+                            <Grid
+                                key={index}
+                                {...activeGalleryImagesRef.layoutOptions?.gridItemProps}
+                            >
+                                <Image
+                                    src={image.src}
+                                    alt=""
+                                    width={1080}
+                                    height={900}
+                                    style={{
+                                        border: '2px solid gray',
+                                        height: '100%',
+                                        maxHeight: '90vh',
+                                        width: 'auto',
+                                    }}
+                                />
+                            </Grid>
+                        )
+                    }
+                    )}
+                </Grid>
+            {/*</ActiveImageContainer>*/}
         </RootPaper>
     )
 }
@@ -73,16 +102,16 @@ const RootPaper = styled(Paper) (({ theme }) => ({
     width: '100vw',
     backgroundColor: '#323232CC',
     padding: theme.spacing(4, 4),
+    justifyItems: 'center',
     alignContent: 'center',
 }));
 
 const ActiveImageContainer = styled('div')(({ theme }) => ({
     display: "flex",
-    flex: "1 1 0%",
+    flex: "1 1 0",
     flexGrow: 1,
     maxHeight: "100%",
     maxWidth: "100%",
     padding: theme.spacing(1),
     justifyContent: "center",
 }))
-

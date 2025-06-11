@@ -1,9 +1,10 @@
 import { ImageRef } from "@/app/features/tiles-gallery/types/types";
 import { createContext, ReactNode, useContext, useState } from "react";
 import GalleryNavigation from "@/app/features/fullscreen-gallery-modal/gallery/GalleryNavigation";
+import { GalleryImageRef } from "@/app/features/fullscreen-gallery-modal/types/GalleryImageRef";
 
 interface GalleryContextType {
-    images: ImageRef[];
+    images: GalleryImageRef[];
     activeIndex: number;
     setActiveIndex: (index: number) => void;
     onClose: () => void;
@@ -21,7 +22,7 @@ export function useGalleryContext() {
 
 interface GalleryProviderProps {
     children: ReactNode;
-    images: ImageRef[];
+    images: GalleryImageRef[];
     initialImageId?: number;
     onClose: () => void;
 }
@@ -33,7 +34,7 @@ export function GalleryProvider({
     onClose,
 }: GalleryProviderProps) {
 
-    const initialImage = images.find(i => i.id === initialImageId);
+    const initialImage = images.find(i => i.anchorImageId === initialImageId);
     const initialImageIndex =  initialImageId && initialImage ? images.indexOf(initialImage) : 0;
 
     const [activeIndex, setActiveIndex] = useState(initialImageIndex);

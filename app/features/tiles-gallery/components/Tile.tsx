@@ -57,8 +57,8 @@ export default function Tile({ imageRef }: TileProps) {
 
     const animationWave = useMemo((): number => {
         // Determine if the tile is in the left or right column
-        const isRightColumn = imageRef.layoutIndex.index % 2 === 1; // Right column tiles have odd indices (1, 3, 5, 7)
-        const isLeftSide = imageRef.layoutIndex.side === 'left';
+        const isRightColumn = imageRef.layoutIndex!.index % 2 === 1; // Right column tiles have odd indices (1, 3, 5, 7)
+        const isLeftSide = imageRef.layoutIndex!.side === 'left';
 
         // Base delay value - no row-based delay
         let waveValue;
@@ -82,7 +82,7 @@ export default function Tile({ imageRef }: TileProps) {
     const animationDelay = `${animationWave * 0.2}s`;
 
     const setHovering: MouseEventHandler<HTMLDivElement> = () => {
-        setHoverIndex(imageRef.layoutIndex);
+        setHoverIndex(imageRef.layoutIndex!);
     }
 
     const resetHovering: MouseEventHandler<HTMLDivElement> = () => {
@@ -105,14 +105,16 @@ export default function Tile({ imageRef }: TileProps) {
                 animationDelay, 
                 animationPlayState 
             }}
-            onClick={() => openGallery(imageRef.id)}
+            onClick={() => openGallery(imageRef.id!)}
         >
+            <div className="absolute top-2 text-pink-600">{imageRef.id}</div>
             <Image
                 src={imageRef.src}
                 alt=""
                 width={400}
                 height={400}
                 className="w-full h-full object-cover"
+                style={{ objectPosition: imageRef.position || 'center center' }}
             />
         </div>
     );

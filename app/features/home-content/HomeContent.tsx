@@ -9,7 +9,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import NewspaperLayout from "@/app/components/NewspaperLayout";
 import useIsMobile from "@/app/hooks/isMobile";
-import TogetherWeCanDoMagic from "@/app/components/together-we-can-do-magic";
+import TogetherWeCanDoMagic from "@/app/components/TogetherWeCanDoMagic";
 
 const footerVariants = {
     hidden: { opacity: 0, y: 20 },

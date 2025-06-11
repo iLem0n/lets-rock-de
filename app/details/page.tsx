@@ -8,7 +8,7 @@ import Markdown from "@/app/components/Markdown";
 import ParagraphText from "@/app/features/home-content/components/views/Text";
 import { ParagraphType } from "@/app/features/home-content/types/constants";
 import TopicView from "@/app/features/home-content/components/TopicView";
-import TogetherWeCanDoMagic from "@/app/components/together-we-can-do-magic";
+import TogetherWeCanDoMagic from "@/app/components/TogetherWeCanDoMagic";
 
 export default function Details() {
 

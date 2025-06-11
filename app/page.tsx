@@ -6,25 +6,13 @@ import { Typography } from "@mui/material";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const footerVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { 
-        opacity: 1, 
-        y: 0,
-        transition: { 
-            duration: 0.5,
-            ease: "easeOut",
-            delay: 0.2
-        }
-    }
-};
 
-export default function Home() {
-    return (
-        <>
+export default function HomePage() {
+  return (
+      <>
         <main className="flex min-h-screen flex-col items-center justify-between">
-            <TilesGallery />
-            <HomeContent />
+          <TilesGallery />
+          <HomeContent />
         </main>
         <motion.footer
             initial="hidden"
@@ -32,10 +20,23 @@ export default function Home() {
             viewport={{ once: true }}
             variants={footerVariants}
         >
-            <Typography variant="body2" fontSize={18} color="text.secondary" align="center" sx={{ padding: 2 }}>
-                <Link href="https://petercglade.dev" target="_blank">Crafted with ❤️ by PCG</Link>
-            </Typography>
+          <Typography variant="body2" fontSize={18} color="text.secondary" align="center" sx={{ padding: 2 }}>
+            <Link href="https://petercglade.dev" target="_blank">Crafted with ❤️ by PCG</Link>
+          </Typography>
         </motion.footer>
-        </>
-    );
+      </>
+  );
 }
+
+const footerVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+      delay: 0.2
+    }
+  }
+};

@@ -4,7 +4,8 @@ export type LayoutIndex = {
 }
 
 export type ImageRef = {
-    id: number;
+    id?: number;
     src: string;
-    layoutIndex: LayoutIndex;
+    position?: string;
+    layoutIndex?: LayoutIndex;
 }

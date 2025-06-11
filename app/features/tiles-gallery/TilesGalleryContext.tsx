@@ -1,8 +1,9 @@
 'use client';
 
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { ImageRef, LayoutIndex } from "@/app/features/tiles-gallery/types/types";
 import FullscreenGalleryModal from "@/app/features/fullscreen-gallery-modal/FullscreenGalleryModal";
+import { leftTitleImageDef, rightTitleImageDef } from "@/app/features/tiles-gallery/data/data";
 
 interface TilesGalleryContextType {
     images: ImageRef[];
@@ -25,26 +26,27 @@ export function useTilesGallery() {
 
 export function TilesGalleryProvider({
     children,
-}: Readonly<{ children: ReactNode }>) {
-
-    const leftImageSources: Omit<ImageRef, 'id'>[] = Array.from({ length: 8 }).map((_, index) => ({
-        src: `/assets/images/left/${index + 1}.png`,
+}: Readonly<{
+    children: ReactNode,
+}>) {
+    const leftImageSources: Omit<ImageRef, 'id'>[] = leftTitleImageDef.map((imageDef, index) => ({
+        src: `/assets/images/gallery/${imageDef.name}`,
+        position: imageDef.position,
         layoutIndex: { index, side: 'left' },
     }));
 
-    const rightImageSources: Omit<ImageRef, 'id'>[] = Array.from({ length: 8 }).map((_, index) => ({
-        src: `/assets/images/right/${index + 1}.png`,
+    const rightImageSources: Omit<ImageRef, 'id'>[] = rightTitleImageDef.map((imageDef, index) => ({
+        src: `/assets/images/gallery/${imageDef.name}`,
+        position: imageDef.position,
         layoutIndex: { index, side: 'right' },
     }));
 
-
-    const images: ImageRef[] = [
+    const titleImages: ImageRef[] = [
         ...leftImageSources,
         ...rightImageSources,
     ].map((ref, index) => ({
         id: index + 1,
-        src: ref.src,
-        layoutIndex: ref.layoutIndex,
+        ...ref
     }));
 
     const [hoverIndex, setHoverIndex] = useState<LayoutIndex | null>(null);
@@ -63,7 +65,7 @@ export function TilesGalleryProvider({
             centerpieceReady, 
             setCenterpieceReady,
             openGallery,
-            images
+            images: titleImages,
         }}>
             {children}
             <FullscreenGalleryModal
