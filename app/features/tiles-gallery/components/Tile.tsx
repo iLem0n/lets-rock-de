@@ -102,7 +102,8 @@ export default function Tile({ imageRef }: TileProps) {
             onMouseLeave={resetHovering}
             style={{ 
                 animationDelay, 
-                animationPlayState 
+                animationPlayState,
+                borderWidth: imageRef.layoutIndex.side === 'left' && imageRef.layoutIndex.index === 0 ? 0 : '3px',
             }}
             onClick={() => openGallery(imageRef.id!)}
         >
