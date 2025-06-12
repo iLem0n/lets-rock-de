@@ -95,7 +95,8 @@ export default function Tile({ imageRef }: TileProps) {
     return (
         <div
             className={clsx("tile-container", {
-                'highlight': highlightType === 'highlight',
+                'highlight': imageRef.layoutIndex.side === 'right' && highlightType === 'highlight',
+                'highlight2': imageRef.layoutIndex.side === 'left' && highlightType === 'highlight',
                 'background': highlightType === 'background',
             })}
             onMouseEnter={setHovering}
@@ -103,7 +104,7 @@ export default function Tile({ imageRef }: TileProps) {
             style={{ 
                 animationDelay, 
                 animationPlayState,
-                borderWidth: imageRef.layoutIndex.side === 'left' && imageRef.layoutIndex.index === 0 ? 0 : '3px',
+                borderWidth: imageRef.layoutIndex.side === 'left' && imageRef.layoutIndex.index !== 4 ? 0 : '3px',
             }}
             onClick={() => openGallery(imageRef.id!)}
         >
