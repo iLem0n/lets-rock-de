@@ -1,5 +1,5 @@
 export const leftTitleImageDef = [
-    { name: 'slider 01 a.jpg' },
+    { name: 'mo 01 gl.jpg' },
     { name: 'slider 02 a.jpg' },
     { name: 'slider 06.jpg' },
     { name: 'slider 12.jpg', position: "right center" },

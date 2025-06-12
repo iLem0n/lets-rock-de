@@ -77,8 +77,8 @@ export default function Tile({ imageRef }: TileProps) {
     }, [imageRef.layoutIndex]);
 
     // Calculate animation delay based on tile index and side
-    // Use a smaller delay for smoother sequential animation
-    const animationDelay = `${animationWave * 0.2}s`;
+    // Use a very small delay for more simultaneous animation with just a hint of sequence
+    const animationDelay = `${animationWave * 0.1}s`;
 
     const setHovering: MouseEventHandler<HTMLDivElement> = () => {
         setHoverIndex(imageRef.layoutIndex!);
@@ -106,7 +106,6 @@ export default function Tile({ imageRef }: TileProps) {
             }}
             onClick={() => openGallery(imageRef.id!)}
         >
-            <div className="absolute top-2 text-pink-600">{imageRef.id}</div>
             <Image
                 src={imageRef.src}
                 alt=""

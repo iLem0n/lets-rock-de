@@ -21,7 +21,7 @@ export default function Centerpiece() {
             setAnimationPlayState('running');
 
             // Signal that the centerpiece animation is complete after it finishes
-            const animationDuration = 1000; // 1.5s in milliseconds
+            const animationDuration = 800; // 0.8s in milliseconds - reduced to match simplified animation
             setTimeout(() => {
                 setCenterpieceReady(true);
             }, animationDuration);
